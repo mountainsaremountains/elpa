@@ -3,3 +3,4 @@ melpa-stable/
 melpa/
 nongnu/
 org/
+elpa-clone.el

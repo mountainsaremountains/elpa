@@ -14,8 +14,10 @@ all: $(RESET_TARGETS)
 
 clone-%: elpa-clone.el
 	emacs -l elpa-clone.el -nw --batch --eval="(elpa-clone \"$(word $(call pos,$*,$(SOURCES)),$(URL_PATHS))\" \"$(PWD)/$*\")"
-
-git-reset-%: clone-%
+# this fires for each stemm but whatever
+clean-%: clone-%
+	-tar -vf nongnu/pdf-tools-1.1.0.tar --delete pdf-tools-1.1.0/test/encrypted.pdf
+git-reset-%: clean-%
 	cd $*/ && rm -rf .git
 	cd $*/ && git init
 	cd $*/ && git add .
